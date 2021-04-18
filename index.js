@@ -124,6 +124,13 @@ client.connect(err => {
             })
     });
 
+    app.get('/getOrder', (req, res) => {
+        bookingCollection.find({email: req.query.email})
+            .toArray((err, documents) => {
+                res.send(documents);
+            })
+    });
+
     app.delete('/delete/:id', (req, res) => {
         const id = ObjectID(req.params.id);
         serviceCollection.deleteOne({_id: id})
